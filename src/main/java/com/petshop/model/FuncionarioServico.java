@@ -1,11 +1,11 @@
 package com.petshop.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class FuncionarioServico {
     private Long idFunc;
     private Long idServ;
-    private LocalDate dataAgendamento;
+    private LocalDateTime dataAgendamento;
 
     public Long getIdFunc() {
         return idFunc;
@@ -23,11 +23,11 @@ public class FuncionarioServico {
         this.idServ = idServ;
     }
 
-    public LocalDate getDataAgendamento() {
+    public LocalDateTime getDataAgendamento() {
         return dataAgendamento;
     }
 
-    public void setDataAgendamento(LocalDate dataAgendamento) {
+    public void setDataAgendamento(LocalDateTime dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
     }
 }
