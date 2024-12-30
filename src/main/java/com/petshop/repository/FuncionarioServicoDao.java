@@ -12,8 +12,8 @@ import java.util.List;
 
 public class FuncionarioServicoDao implements Dao<FuncionarioServico> {
 
-        FuncionarioServico funcionarioServico = null;
-        private boolean executeUpdate(String sql, Object... params) {
+        @Override
+        public boolean executeUpdate(String sql, Object... params) {
             try (Connection conn = DBconnection.connect();
                  PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
@@ -34,19 +34,21 @@ public class FuncionarioServicoDao implements Dao<FuncionarioServico> {
             try (Connection conn = DBconnection.connect();
                  PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-                // Preenche os parâmetros da query
+
                 for (int i = 0; i < params.length; i++) {
                     preparedStatement.setObject(i + 1, params[i]);
                 }
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        funcionarioServico = new FuncionarioServico();
+                        FuncionarioServico funcionarioServico = new FuncionarioServico();
                         funcionarioServico.setIdFunc(resultSet.getLong("id_func"));
                         funcionarioServico.setIdServ(resultSet.getLong("id_serv"));
                         funcionarioServico.setDataAgendamento(resultSet.getTimestamp("data_agendamento").toLocalDateTime());
                         funcServ.add(funcionarioServico);
                     }
+                }catch(Exception e){
+                    System.out.println("Error: " + e.getMessage());
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

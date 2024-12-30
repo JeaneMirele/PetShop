@@ -3,7 +3,7 @@ package com.petshop.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class FuncionarioController {
     @FXML
     private Label welcomeText;
 

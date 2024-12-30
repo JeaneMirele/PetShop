@@ -11,11 +11,12 @@ import java.util.List;
 
 public class ProdutoDao implements Dao<Produto> {
 
-    private boolean executeUpdate(String sql, Object... params) {
+    @Override
+    public boolean executeUpdate(String sql, Object... params) {
         try (Connection conn = DBconnection.connect();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            // Preenche os parâmetros da query
+
             for (int i = 0; i < params.length; i++) {
                 preparedStatement.setObject(i + 1, params[i]);
             }
