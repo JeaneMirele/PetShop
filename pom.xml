@@ -71,7 +71,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.petshop.petshop/com.petshop.petshop.model.HelloApplication</mainClass>
+                            <mainClass>com.petshop/com.petshop.App</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
@@ -83,5 +83,22 @@
                 </executions>
             </plugin>
         </plugins>
+    <resources>
+        <resource>
+            <directory> src/main/resources/com/petshop/Scenes </directory>
+        </resource>
+        <resource>
+            <directory> src/main/resources/com/petshop/css </directory>
+        </resource>
+        <resource>
+            <directory> src/main/resources </directory>
+            <includes>
+                <include>*/.fxml</include>
+                <include>*/.css</include>
+                <include>*/.png</include>
+                <include>*/.jpg</include>
+            </includes>
+        </resource>
+    </resources>
     </build>
 </project>

@@ -1,4 +1,5 @@
 module com.petshop.petshop {
+    requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
