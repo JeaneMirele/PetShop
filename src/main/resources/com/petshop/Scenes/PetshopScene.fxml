@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petshop.controller.PetShopController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+         <items>
+            <AnchorPane id="FundoPet" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="398.0" prefWidth="204.0" stylesheets="@../css/styles.css">
+               <children>
+                  <VBox layoutX="14.0" layoutY="36.0" maxWidth="300.0" minHeight="300.0" minWidth="200.0" prefHeight="398.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label id="PetShop" alignment="BOTTOM_LEFT" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/styles.css" text="PetShop" textFill="#2c2b2b">
+                           <font>
+                              <Font name="Times New Roman Bold" size="31.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="50.0" left="40.0" right="50.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="598.0" prefWidth="699.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="658.0">
+                     <children>
+                        <ImageView id="Servicos" fitHeight="400.0" fitWidth="707.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Img/Comandos-caes-e-gatos.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <MenuBar id="Menu" prefHeight="35.0" prefWidth="711.0" stylesheets="@../css/styles.css">
+                     <menus>
+                        <Menu id="Cadastro" mnemonicParsing="false" text="Cadastro">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Serviços" />
+                              <MenuItem mnemonicParsing="false" text="Produtos" />
+                              <MenuItem fx:id="OpenFuncionarios" mnemonicParsing="false" onAction="#ClickFunc" text="Funcionários" />
+                           </items>
+                        </Menu>
+                        <Menu id="Agendamentos" mnemonicParsing="false" text="Agendamentos">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Marcações" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</HBox>

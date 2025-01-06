@@ -1,3 +1,35 @@
-.label-C{
-fx-background-color: blue;
+* {
+-fx-font-family: 'Comic Sans MS';
+}
+
+#Menu{
+
+-fx-background-color: #000080;
+}
+
+#Agendamentos{
+-fx-background-color: #FFD700;
+-fx-border-width: 2px;
+-fx-border-color: white;
+
+
+}
+
+
+
+#Cadastro{
+
+-fx-background-color: #FFD700;
+-fx-border-width: 2px;
+-fx-border-color: white;
+
+}
+
+#PetShop{
+
+-fx-text-fill: #000080;
+}
+
+#FundoPet{
+-fx-background-color: #FFD700;
 }

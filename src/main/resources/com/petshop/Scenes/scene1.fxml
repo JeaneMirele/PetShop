@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLCadastroFuncionarioController">
    <children>
       <SplitPane dividerPositions="0.49498327759197325" layoutX="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="274.0">
                <children>
-                  <TableView fx:id="tblViewFuncionarios" layoutX="14.0" layoutY="26.0" prefHeight="398.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="TblFunc" fx:id="tblViewFuncionarios" prefHeight="398.0" prefWidth="293.0" stylesheets="@../css/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="tblColumnNome" prefWidth="75.0" text="Nome" />
                       <TableColumn fx:id="tblColumnTelefone" prefWidth="75.0" text="Telefone" />
@@ -38,7 +37,7 @@
                      <children>
                         <Button fx:id="btnAdd" mnemonicParsing="false" text="Adicionar" />
                         <Button fx:id="btnAlterar" layoutX="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Alterar" />
-                        <Button fx:id="btnExcluir" layoutX="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
+                        <Button fx:id="btnExcluir" layoutX="155.0" mnemonicParsing="false" onAction="#ClickExcluir" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
                      </children>
                   </Group>
                   <Label layoutX="64.0" layoutY="14.0" text="Detalhes dos Funcionários">
