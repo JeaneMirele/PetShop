@@ -8,7 +8,7 @@ public class FuncionarioService {
     private FuncionarioDao funcionarioDao;
 
     public FuncionarioService(){
-        funcionarioDao = new FuncionarioDao;
+        funcionarioDao = new FuncionarioDao();
     }
 
     public List<Funcionario> getFuncionarios(){

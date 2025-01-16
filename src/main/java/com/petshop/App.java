@@ -11,14 +11,20 @@ import javafx.stage.Stage;
         @Override
         public void start(Stage primaryStage) throws Exception {
 
-            Parent root = FXMLLoader.load(getClass().getResource("Scenes/scene1.fxml"));
-            Scene scene = new Scene(root);
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("Scenes/PetshopScene.fxml"));
+                Scene scene = new Scene(root);
 
-            scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
 
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("PetShop");
-            primaryStage.show();
+                primaryStage.setScene(scene);
+                primaryStage.setResizable(true);
+                primaryStage.sizeToScene();
+                primaryStage.setTitle("PetShop");
+                primaryStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         public static void main(String[] args) {

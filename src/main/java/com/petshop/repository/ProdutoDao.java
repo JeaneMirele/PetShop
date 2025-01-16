@@ -46,7 +46,7 @@ public class ProdutoDao implements Dao<Produto> {
                     produto.setNome(resultSet.getString("nome"));
                     produto.setQtdEstoque(resultSet.getLong("qtd_estoque"));
                     produto.setValor(resultSet.getFloat("valor"));
-                    produto.setDataValidade(resultSet.getTimestamp("data_validade").toLocalDateTime());
+                    produto.setDataValidade(resultSet.getDate("data_validade").toLocalDate());
                     produto.setDescricao(resultSet.getString("descricao"));
                     produto.setCategoria(resultSet.getString("categoria"));
                     products.add(produto);

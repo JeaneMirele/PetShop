@@ -2,34 +2,52 @@
 -fx-font-family: 'Comic Sans MS';
 }
 
-#Menu{
 
--fx-background-color: #000080;
-}
-
-#Agendamentos{
--fx-background-color: #FFD700;
--fx-border-width: 2px;
--fx-border-color: white;
-
-
-}
-
-
-
-#Cadastro{
+#Buttons{
 
 -fx-background-color: #FFD700;
 -fx-border-width: 2px;
 -fx-border-color: white;
 
 }
+#table{
+-fx-background-color: #FFD700;
+}
 
+#colunas{
+-fx-text-fill: #000080;
+}
 #PetShop{
 
 -fx-text-fill: #000080;
+
 }
 
-#FundoPet{
+#icone{
+-fx-color: #FFD700;
+}
+
+#ServicosLbl{
 -fx-background-color: #FFD700;
+-fx-border-radius: 5px;
+-fx-background-radius: 5px;
+}
+#Fundo{
+-fx-background-color: #000080;
+-fx-border-radius: 5px;
+-fx-background-radius: 5px;
+}
+#cardsArea{
+-fx-background-color: #FFD700;
+
+}
+
+#hbox{
+-fx-background-color: #000080;
+-fx-fill: #FFFFFF;
+}
+
+#svg{
+width: 50px;
+height: 50px;
 }

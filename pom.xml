@@ -51,7 +51,8 @@
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
-    </repositories>    <build>
+    </repositories>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -90,15 +91,15 @@
         <resource>
             <directory> src/main/resources/com/petshop/css </directory>
         </resource>
-        <resource>
-            <directory> src/main/resources </directory>
-            <includes>
-                <include>*/.fxml</include>
-                <include>*/.css</include>
-                <include>*/.png</include>
-                <include>*/.jpg</include>
-            </includes>
-        </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
+                    <include>**/*.jpg</include>
+                </includes>
+            </resource>
     </resources>
     </build>
 </project>

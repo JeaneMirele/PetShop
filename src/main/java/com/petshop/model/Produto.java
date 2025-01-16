@@ -1,14 +1,16 @@
 package com.petshop.model;
 
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Produto {
     private Long id;
     private String nome;
     private Long qtdEstoque;
     private float valor;
-    private LocalDateTime dataValidade;
+    private LocalDate dataValidade;
     private String descricao;
     private String categoria;
 
@@ -16,7 +18,7 @@ public class Produto {
 
     }
 
-    public Produto(Long id, String nome, Long qtdEstoque, float valor, LocalDateTime dataValidade, String descricao, String categoria) {
+    public Produto(Long id, String nome, Long qtdEstoque, float valor, LocalDate dataValidade, String descricao, String categoria) {
         this.id= id;
         this.nome = nome;
         this.qtdEstoque = qtdEstoque;
@@ -57,13 +59,10 @@ public class Produto {
         this.valor = valor;
     }
 
-    public LocalDateTime getDataValidade() {
+    public LocalDate getDataValidade() {
         return dataValidade;
     }
 
-    public void setDataValidade(LocalDateTime dataValidade) {
-        this.dataValidade = dataValidade;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -82,4 +81,6 @@ public class Produto {
     }
 
 
+    public void setDataValidade(LocalDate dataValidade) { this.dataValidade = dataValidade;
+    }
 }
