@@ -76,7 +76,7 @@ public class FuncionarioDao implements Dao<Funcionario> {
         }
 
         @Override
-        public boolean update(Funcionario funcionario, String[] params) {
+        public boolean update(Funcionario funcionario) {
             String sql = "UPDATE funcionario SET nome = ?, salario = ?, telefone = ?, cargo = ? WHERE id = ?";
             return executeUpdate(sql, funcionario.getNome(), funcionario.getSalario(), funcionario.getTelefone(), funcionario.getCargo());
         }

@@ -21,7 +21,7 @@ public class ServicoService {
     }
 
     public boolean update(Servico servico, String[] params){
-        return servicoDao.update(servico, params);
+        return servicoDao.update(servico);
     }
 
     public boolean delete(Long id){

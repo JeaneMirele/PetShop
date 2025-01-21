@@ -21,8 +21,8 @@ public class ProdutoService {
         return produtoDao.save(produto);
     }
 
-    public boolean update(Produto produto, String[] params){
-        return produtoDao.update(produto, params);
+    public boolean update(Produto produto){
+        return produtoDao.update(produto);
     }
 
     public boolean delete(Long id){

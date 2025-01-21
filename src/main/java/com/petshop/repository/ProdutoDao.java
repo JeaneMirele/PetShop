@@ -1,11 +1,8 @@
 package com.petshop.repository;
-
 import com.petshop.model.Produto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +43,11 @@ public class ProdutoDao implements Dao<Produto> {
                     produto.setNome(resultSet.getString("nome"));
                     produto.setQtdEstoque(resultSet.getLong("qtd_estoque"));
                     produto.setValor(resultSet.getFloat("valor"));
-                    produto.setDataValidade(resultSet.getDate("data_validade").toLocalDate());
                     produto.setDescricao(resultSet.getString("descricao"));
                     produto.setCategoria(resultSet.getString("categoria"));
+                    produto.setDataValidade(LocalDate.parse(resultSet.getString("data_validade")));
                     products.add(produto);
+
                 }
             }
         } catch (SQLException e) {
@@ -60,7 +58,7 @@ public class ProdutoDao implements Dao<Produto> {
 
     @Override
     public Produto findById(Long id) {
-        String sql = "SELECT * FROM produto WHERE id = ?";
+        String sql = "SELECT * FROM produto WHERE id_prod = ?";
         List<Produto> products = executeQuery(sql, id);
         return products.isEmpty() ? null : products.get(0);
     }
@@ -78,14 +76,16 @@ public class ProdutoDao implements Dao<Produto> {
     }
 
     @Override
-    public boolean update(Produto produto, String[] params) {
-        String sql = "UPDATE produto SET nome = ?, qtd_estoque = ?, valor = ?, data_validade = ?, descricao = ?, categoria = ? WHERE id = ?";
-        return executeUpdate(sql, produto.getNome(), produto.getQtdEstoque(), produto.getValor(), produto.getDataValidade(), produto.getDescricao(), produto.getCategoria());
+    public boolean update(Produto produto) {
+        String sql = "UPDATE produto SET nome = ?, qtd_estoque = ?, valor = ?, data_validade = ?, descricao = ?, categoria = ? WHERE id_prod = ?";
+        return executeUpdate(sql, produto.getNome(), produto.getQtdEstoque(), produto.getValor(), produto.getDataValidade(), produto.getDescricao(), produto.getCategoria(), produto.getId());
+
+
     }
 
     @Override
     public boolean delete(Long id) {
-        String sql = "DELETE FROM produto WHERE id = ?";
+        String sql = "DELETE FROM produto WHERE id_prod = ?";
         return executeUpdate(sql, id);
     }
 }

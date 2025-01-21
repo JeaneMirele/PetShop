@@ -20,7 +20,7 @@ public class FuncionarioService {
     }
 
     public boolean update(Funcionario funcionario, String[] params){
-        return funcionarioDao.update(funcionario, params);
+        return funcionarioDao.update(funcionario);
     }
 
     public boolean delete(Long id){

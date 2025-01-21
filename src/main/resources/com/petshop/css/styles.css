@@ -4,50 +4,56 @@
 
 
 #Buttons{
-
--fx-background-color: #FFD700;
+-fx-text-fill: #FFA924;
+-fx-background-color: #800080;
 -fx-border-width: 2px;
 -fx-border-color: white;
 
 }
 #table{
--fx-background-color: #FFD700;
+-fx-background-color: #800080;
 }
 
 #colunas{
--fx-text-fill: #000080;
+-fx-text-fill: #800080;
 }
 #PetShop{
-
--fx-text-fill: #000080;
+-fx-text-fill: #800080;
 
 }
 
-#icone{
--fx-color: #FFD700;
-}
-
-#ServicosLbl{
--fx-background-color: #FFD700;
--fx-border-radius: 5px;
--fx-background-radius: 5px;
-}
-#Fundo{
--fx-background-color: #000080;
--fx-border-radius: 5px;
--fx-background-radius: 5px;
-}
 #cardsArea{
--fx-background-color: #FFD700;
+-fx-background-color: #800080;
 
 }
 
 #hbox{
--fx-background-color: #000080;
--fx-fill: #FFFFFF;
+-fx-background-color: #800080;
+
 }
 
-#svg{
-width: 50px;
-height: 50px;
+#Vbox{
+-fx-background-color: #FFA924;
+}
+
+#Login{
+-fx-text-fill: #800080;
+}
+
+#Entrar{
+-fx-text-fill: #FFA924;
+-fx-background-color: #800080;
+-fx-border-width: 2px;
+-fx-border-color: white;
+}
+
+#buttons{
+-fx-background-color: #FFA924;
+-fx-text-fill: #800080;
+-fx-border-width: 2px;
+-fx-border-color: white;
+}
+
+#label{
+-fx-text-fill: #FFA924;
 }

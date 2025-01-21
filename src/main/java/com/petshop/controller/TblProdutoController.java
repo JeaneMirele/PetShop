@@ -2,22 +2,21 @@ package com.petshop.controller;
 
 import com.petshop.model.Produto;
 import com.petshop.service.ProdutoService;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class TblProdutoController {
+public class TblProdutoController implements Initializable {
     @FXML
     private TextField Categoria;
 
@@ -52,28 +51,31 @@ public class TblProdutoController {
     private Button UpdateProduto;
 
     @FXML
-    private TreeTableColumn<Produto, String> ColumnCategoria;
+    private Button LimparProduto;
 
     @FXML
-    private TreeTableColumn<Produto, String> ColumnDescricao;
+    private TableColumn<Produto, String> ColumnCategoria;
 
     @FXML
-    private TreeTableColumn<Produto, Long> ColumnId;
+    private TableColumn<Produto, String> ColumnDescricao;
 
     @FXML
-    private TreeTableColumn<Produto, String> ColumnNome;
+    private TableColumn<Produto, Long> ColumnId;
 
     @FXML
-    private TreeTableColumn<Produto, Number> ColumnQtd;
+    private TableColumn<Produto, String> ColumnNome;
 
     @FXML
-    private TreeTableColumn<Produto, LocalDate> ColumnValidade;
+    private TableColumn<Produto, Number> ColumnQtd;
 
     @FXML
-    private TreeTableColumn<Produto, Number> ColumnValor;
+    private TableColumn<Produto, LocalDate> ColumnValidade;
 
     @FXML
-    private TreeTableView<Produto> treeTableView;
+    private TableColumn<Produto, Number> ColumnValor;
+
+    @FXML
+    private TableView<Produto> tableView;
 
     private ProdutoService produtoService;
 
@@ -86,9 +88,10 @@ public class TblProdutoController {
     void BuscarProduto(ActionEvent event) {
         String nome = Nome.getText();
         List<Produto> produtos = produtoService.findByName(nome);
+        ObservableList<Produto> observableProdutos = FXCollections.observableArrayList(produtos);
 
         if (!produtos.isEmpty()) {
-            atualizarTabela();
+           tableView.setItems(observableProdutos);
         } else {
             showError("Nenhum produto encontrado com o nome informado.");
         }
@@ -96,142 +99,99 @@ public class TblProdutoController {
 
     @FXML
     void DeleteProduto(ActionEvent event) {
-        TreeItem<Produto> produtoSelecionadoItem = treeTableView.getSelectionModel().getSelectedItem();
+        Produto produtoSelecionado = tableView.getSelectionModel().getSelectedItem();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar Exclusão");
+        alert.setHeaderText("Tem certeza que deseja excluir o produto?");
+        alert.setContentText("Esta ação não pode ser desfeita.");
 
-        if (produtoSelecionadoItem != null) {
-            Produto produtoSelecionado = produtoSelecionadoItem.getValue();
-            boolean sucesso = produtoService.delete(produtoSelecionado.getId());
+        ButtonType buttonSim = new ButtonType("Sim");
+        ButtonType buttonNao = new ButtonType("Não");
+        alert.getButtonTypes().setAll(buttonSim, buttonNao);
 
-            if (sucesso) {
-                treeTableView.getRoot().getChildren().remove(produtoSelecionado);
-                showSuccess("Produto excluído com sucesso.");
-                atualizarTabela();
-            } else {
-                showError("Erro ao excluir o produto.");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonSim) {
+
+                Long produtoId = produtoSelecionado.getId();
+                boolean sucesso = produtoService.delete(produtoId);
+
+                if (sucesso) {
+                    tableView.getItems().remove(produtoSelecionado);
+                    showSuccess("Produto excluído com sucesso.");
+                } else {
+                    showError("Erro ao excluir o produto.");
+                }
             }
-        }
+        });
     }
-
-
 
     @FXML
     void SaveProduto(ActionEvent event) {
-        Produto produto = coletarDadosDoFormulario();
 
-        if (produto == null) {
-            return;
-        }
+        String nome = Nome.getText();
+        String categoria = Categoria.getText();
+        String descricao = Descricao.getText();
+        Long qtdEstoque = Long.parseLong(Qtd.getText());
+        Float valor = Float.parseFloat(Valor.getText());
+        LocalDate validade = LocalDate.parse(Validade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        boolean sucesso = produtoService.save(produto);
-
+        Produto novoProduto = new Produto(nome, qtdEstoque, valor, validade, descricao, categoria);
+        boolean sucesso = produtoService.save(novoProduto);
         if (sucesso) {
-            showSuccess("Produto salvo com sucesso!");
-            atualizarTabela();
+            tableView.setItems(FXCollections.observableList(produtoService.getProdutos()));
+            showSuccess("Produto salvo com sucesso.");
         } else {
             showError("Erro ao salvar o produto.");
         }
+
     }
 
 
     @FXML
     void UpdateProduto(ActionEvent event) {
-        TreeItem<Produto> produtoSelecionadoItem = treeTableView.getSelectionModel().getSelectedItem();
-        if (produtoSelecionadoItem == null) {
-            showError("Nenhum produto selecionado para atualizar.");
-            return;
-        }
+        Produto produtoSelecionado = tableView.getSelectionModel().getSelectedItem();
 
-        Produto produto = coletarDadosDoFormulario();
+        if (produtoSelecionado != null) {
+            String nome = Nome.getText();
+            String categoria = Categoria.getText();
+            String descricao = Descricao.getText();
+            Long qtdEstoque = Long.parseLong(Qtd.getText());
+            Float valor = Float.parseFloat(Valor.getText());
+            LocalDate validade = LocalDate.parse(Validade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        if (produto == null) {
-            return;
-        }
-
-        produto.setId(produtoSelecionadoItem.getValue().getId());
-
-        boolean sucesso = produtoService.update(produto, null);
-
-        if (sucesso) {
-            showSuccess("Produto atualizado com sucesso!");
-            atualizarTabela();
-        } else {
-            showError("Erro ao atualizar o produto.");
-        }
-    }
+            produtoSelecionado.setNome(nome);
+            produtoSelecionado.setCategoria(categoria);
+            produtoSelecionado.setDescricao(descricao);
+            produtoSelecionado.setQtdEstoque(qtdEstoque);
+            produtoSelecionado.setValor(valor);
+            produtoSelecionado.setDataValidade(validade);
 
 
-    public LocalDate capturarDataValidade() {
-        String textoData = Validade.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            boolean sucesso = produtoService.update(produtoSelecionado);
 
-        try {
-            LocalDate dataValidade = LocalDate.parse(textoData, formatter);
-            return dataValidade;
-
-        } catch (DateTimeParseException e) {
-            System.err.println("Formato de data inválido. Use o formato dd/MM/yyyy.");
-            return null;
+            if (sucesso) {
+                tableView.refresh();
+                showSuccess("Produto atualizado com sucesso.");
+            } else {
+                showError("Selecione um produto para atualizar.");
+            }
         }
     }
-    private Produto coletarDadosDoFormulario() {
-        String nome = Nome.getText();
-        String descricao = Descricao.getText();
-        String categoria = Categoria.getText();
-        LocalDate dataValidade = capturarDataValidade();
-        float valor;
-        long qtd;
-
-        try {
-            valor = Float.parseFloat(Valor.getText());
-            qtd = Long.parseLong(Qtd.getText());
-        } catch (NumberFormatException e) {
-            showError("Valor ou quantidade inválidos. Insira valores numéricos.");
-            return null;
-        }
-
-        if (nome.isEmpty() || descricao.isEmpty() || categoria.isEmpty() || dataValidade == null) {
 
 
-            System.out.println("Nome: " + nome);
-            System.out.println("Descrição: " + descricao);
-            System.out.println("Categoria: " + categoria);
-            System.out.println("Data Validade: " + dataValidade);
+    @FXML
+    void LimparProduto(ActionEvent event){
 
-            showError("Todos os campos devem ser preenchidos corretamente.");
-            return null;
-        }
+        Nome.clear();
+        Categoria.clear();
+        Descricao.clear();
+        Qtd.clear();
+        Valor.clear();
+        Validade.clear();
 
-        Produto produto = new Produto();
-        produto.setNome(nome);
-        produto.setDescricao(descricao);
-        produto.setCategoria(categoria);
-        produto.setValor(valor);
-        produto.setQtdEstoque(qtd);
-        produto.setDataValidade(dataValidade);
-
-        return produto;
     }
 
-    private void atualizarTabela() {
-        List<Produto> produtos = produtoService.getProdutos();
-        ObservableList<Produto> observableProdutos = FXCollections.observableArrayList(produtos);
-
-
-        TreeItem<Produto> root = new TreeItem<>();
-        observableProdutos.forEach(produto -> root.getChildren().add(new TreeItem<>(produto)));
-
-        treeTableView.setRoot(root);
-        treeTableView.setShowRoot(false);
-
-        ColumnCategoria.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().getCategoria()));
-        ColumnDescricao.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().getDescricao()));
-        ColumnId.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getValue().getId()));
-        ColumnNome.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().getNome()));
-        ColumnQtd.setCellValueFactory(param -> new SimpleLongProperty(param.getValue().getValue().getQtdEstoque()));
-        ColumnValidade.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getValue().getDataValidade()));
-        ColumnValor.setCellValueFactory(param -> new SimpleDoubleProperty(param.getValue().getValue().getValor()));
-    }
 
     private void showError(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -249,6 +209,27 @@ public class TblProdutoController {
         alert.showAndWait();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        ColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        ColumnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        ColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        ColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ColumnQtd.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
+        ColumnValidade.setCellValueFactory(new PropertyValueFactory<>("dataValidade"));
+        tableView.setItems(FXCollections.observableList(produtoService.getProdutos()));
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue)-> {
+           Produto p = newValue;
+           Nome.setText(p.getNome());
+           Categoria.setText(p.getCategoria());
+           Descricao.setText(p.getDescricao());
+           Qtd.setText(Long.toString(p.getQtdEstoque()));
+           Valor.setText(Float.toString(p.getValor()));
+           Validade.setText(p.getDataValidade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString());
+        });
+
+    }
 }
 
 

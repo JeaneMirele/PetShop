@@ -1,147 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petshop.controller.PetShopController">
+<HBox id="cardsArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="640.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petshop.controller.PetShopController">
    <children>
-      <SplitPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-         <items>
-            <AnchorPane fx:id="cardsArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="598.0" prefWidth="699.0" stylesheets="@../css/styles.css">
+      <VBox id="Vbox" prefHeight="483.0" prefWidth="611.0" stylesheets="@../css/styles.css" HBox.hgrow="ALWAYS">
+         <children>
+            <Label id="PetShop" stylesheets="@../css/styles.css" text="PetShop" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
+            </Label>
+            <Separator prefHeight="17.0" prefWidth="249.0" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="269.0" prefWidth="249.0" VBox.vgrow="ALWAYS">
                <children>
-                  <FlowPane id="Fundo" layoutX="57.0" layoutY="439.0" prefHeight="246.0" prefWidth="247.0" stylesheets="@../css/styles.css">
-                     <children>
-                        <Label id="ServicosLbl" prefHeight="19.0" prefWidth="228.0" stylesheets="@../css/styles.css" text="Serviços Personalizados para Seu Pet">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="10.0" top="20.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <ImageView id="image" fitHeight="150.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true">
-                           <FlowPane.margin>
-                              <Insets left="20.0" top="30.0" />
-                           </FlowPane.margin>
-                           <image>
-                              <Image url="@../Img/Serviços.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="MOVE" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </FlowPane>
-                  <HBox id="hbox" prefHeight="37.0" prefWidth="894.0" AnchorPane.bottomAnchor="761.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                        <Button id="Buttons" fx:id="TblServicos" minWidth="60.0" mnemonicParsing="false" onAction="#abrirTblServicos" text="Serviços" />
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                        <Button id="Buttons" fx:id="TblProdutos" minWidth="60.0" mnemonicParsing="false" onAction="#abrirTblProdutos" text="Produtos" HBox.hgrow="ALWAYS" />
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                        <Button id="Buttons" fx:id="TblAgendamentos" minWidth="60.0" mnemonicParsing="false" onAction="#abrirTblAgendamentos" text="Agendamentos" />
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                        <Button id="Buttons" fx:id="TblFuncionario" minWidth="60.0" mnemonicParsing="false" onAction="#abrirTblFuncionario" text="Profissionais" />
-                        <Region minWidth="20.0" prefHeight="33.0" prefWidth="18.0" />
-                     </children>
-                  </HBox>
-                  <FlowPane id="Fundo" layoutX="360.0" layoutY="439.0" prefHeight="246.0" prefWidth="247.0" stylesheets="@../css/styles.css">
-                     <children>
-                        <Label id="ServicosLbl" prefHeight="19.0" prefWidth="222.0" stylesheets="@../css/styles.css" text="Alimentos e Snacks">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="15.0" top="20.0" />
-                           </FlowPane.margin>
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                        </Label>
-                        <ImageView id="image" fitHeight="178.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
-                           <FlowPane.margin>
-                              <Insets left="20.0" top="35.0" />
-                           </FlowPane.margin>
-                           <image>
-                              <Image url="@../Img/tipos-racao-para-caes.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="MOVE" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </FlowPane>
-                  <Label id="PetShop" layoutX="115.0" layoutY="77.0" prefHeight="51.0" prefWidth="145.0" stylesheets="@../css/styles.css" text="PetShop">
+                  <Label id="Login" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="0.0" prefWidth="35.0" stylesheets="@../css/styles.css" text="Login" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Comic Sans MS Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <TextField alignment="TOP_LEFT" maxWidth="150.0" VBox.vgrow="ALWAYS" />
+                  <Region prefHeight="25.0" prefWidth="249.0" />
+                  <Label id="Login" text="Senha">
+                     <font>
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <FlowPane id="Fundo" layoutX="670.0" layoutY="439.0" prefHeight="246.0" prefWidth="247.0" stylesheets="@../css/styles.css">
-                     <children>
-                        <Label id="ServicosLbl" prefHeight="19.0" prefWidth="222.0" stylesheets="@../css/styles.css" text="Faça seu agendamento conosco">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="15.0" top="20.0" />
-                           </FlowPane.margin>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <ImageView id="image" fitHeight="164.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true">
-                           <FlowPane.margin>
-                              <Insets left="20.0" top="30.0" />
-                           </FlowPane.margin>
-                           <image>
-                              <Image url="@../Img/52815-quais-sao-os-cursos-profissionalizantes-voltados-para-pet-shop.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="MOVE" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </FlowPane>
-                  <FlowPane id="Fundo" layoutX="970.0" layoutY="439.0" prefHeight="246.0" prefWidth="247.0" stylesheets="@../css/styles.css">
-                     <children>
-                        <Label id="ServicosLbl" prefHeight="19.0" prefWidth="222.0" stylesheets="@../css/styles.css" text="Profissionais qualificados">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="15.0" top="20.0" />
-                           </FlowPane.margin>
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
-                        </Label>
-                        <ImageView fitHeight="150.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
-                           <FlowPane.margin>
-                              <Insets left="40.0" top="30.0" />
-                           </FlowPane.margin>
-                           <image>
-                              <Image url="@../Img/prof.jpeg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="MOVE" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </FlowPane>
+                  <TextField maxWidth="150.0" minWidth="0.0" prefHeight="26.0" prefWidth="80.0" VBox.vgrow="ALWAYS" />
+                  <Region prefHeight="25.0" prefWidth="249.0" />
+                  <Button id="Entrar" fx:id="Entrar" mnemonicParsing="false" onAction="#Entrar" stylesheets="@../css/styles.css" text="Entrar" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="100.0" />
+                     </VBox.margin>
+                  </Button>
+                  <ImageView blendMode="SRC_ATOP" fitHeight="203.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Img/Captura%20de%20tela%202025-01-20%20131922.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
+            </VBox>
+         </children></VBox>
+      <VBox prefHeight="483.0" prefWidth="660.0" HBox.hgrow="ALWAYS">
+         <children>
+            <ImageView fitHeight="451.0" fitWidth="343.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../Img/pngeggp (3).png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="99.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
    </children>
 </HBox>

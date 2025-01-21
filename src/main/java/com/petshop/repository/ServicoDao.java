@@ -78,7 +78,7 @@ public class ServicoDao implements Dao<Servico>{
         }
 
         @Override
-        public boolean update(Servico servico, String[] params) {
+        public boolean update(Servico servico) {
             String sql = "UPDATE produto SET nome = ?, qtd_estoque = ?, valor = ?, data_validade = ?, descricao = ?, categoria = ? WHERE id = ?";
             return executeUpdate(sql, servico.getTipo(), servico.getValor(), servico.getDescricaoServ());
         }
