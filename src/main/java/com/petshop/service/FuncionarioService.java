@@ -3,6 +3,7 @@ package com.petshop.service;
 import com.petshop.model.Funcionario;
 import com.petshop.repository.FuncionarioDao;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FuncionarioService {
     private FuncionarioDao funcionarioDao;
@@ -24,7 +25,15 @@ public class FuncionarioService {
     }
 
     public boolean delete(Long id){
-        return funcionarioDao.delete(id);
+        return funcionarioDao.delete(id);}
+
+    public List<Funcionario> findByName(String nome) {
+        List<Funcionario> funcionarios = FuncionarioDao.findAll();
+        return funcionarios.stream(funcionario -> funcionario.getNome().equalsIgnoreCase(nome))
+                .collect(Collectors.toList());
     }
+
+
+
 }
 

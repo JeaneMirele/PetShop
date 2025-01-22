@@ -45,7 +45,7 @@ import java.io.IOException;
     private void abrirTblFuncionarios(ActionEvent event) throws Exception {
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/petshop/Scenes/TblFuncionario.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/petshop/Scenes/tblFuncionario.fxml"));
             Parent tblFuncionario = loader.load();
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="tblFuncionario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#tblFuncionario" prefHeight="487.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com,petshop.controller.FuncionarioController">
+<HBox fx:id="TblFuncionario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#TblFuncionario" prefHeight="487.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com,petshop.controller.FuncionarioController">
    <children>
-      <VBox id="hbox" prefHeight="487.0" prefWidth="491.0" stylesheets="@../css/styles.css">
+      <VBox id="hbox" prefHeight="487.0" prefWidth="491.0" stylesheets="@styles.css">
          <children>
-            <TableView id="table" fx:id="especie" onSort="#tblPetEspecie" prefHeight="200.0" prefWidth="421.0" stylesheets="@../css/styles.css">
+            <TableView id="table" fx:id="tblFuncionario" onSort="#tblFuncionario" prefHeight="200.0" prefWidth="421.0" stylesheets="@styles.css">
               <columns>
                 <TableColumn prefWidth="75.0" text="Nome" />
                 <TableColumn prefWidth="75.0" text="Salário" />
@@ -80,7 +80,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button id="buttons" fx:id="Salvar" mnemonicParsing="false" onAction="#Salvar" stylesheets="@../css/styles.css" text="Inserir" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Button id="buttons" fx:id="Salvar" mnemonicParsing="false" onAction="#Salvar" stylesheets="@styles.css" text="Inserir" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="25.0" />
                      </GridPane.margin>
@@ -90,7 +90,7 @@
                         <Insets left="90.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="buttons" fx:id="Excluir" maxWidth="62.0" mnemonicParsing="false" onAction="#Excluir" stylesheets="@../css/styles.css" text="Excluir" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <Button id="buttons" fx:id="Excluir" maxWidth="62.0" mnemonicParsing="false" onAction="#Excluir" stylesheets="@styles.css" text="Excluir" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="25.0" />
                      </GridPane.margin>
