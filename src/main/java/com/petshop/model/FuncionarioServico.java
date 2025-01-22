@@ -3,24 +3,24 @@ package com.petshop.model;
 import java.time.LocalDateTime;
 
 public class FuncionarioServico {
-    private Long idFunc;
-    private Long idServ;
+    private Funcionario funcionario;
+    private Servico servico;
     private LocalDateTime dataAgendamento;
 
-    public Long getIdFunc() {
-        return idFunc;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setIdFunc(Long idFunc) {
-        this.idFunc = idFunc;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
-    public Long getIdServ() {
-        return idServ;
+    public Servico getServico() {
+        return servico;
     }
 
-    public void setIdServ(Long idServ) {
-        this.idServ = idServ;
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
     public LocalDateTime getDataAgendamento() {

@@ -1,6 +1,9 @@
 package com.petshop.repository;
 
+import com.petshop.model.Funcionario;
 import com.petshop.model.FuncionarioServico;
+import com.petshop.model.Pet;
+import com.petshop.model.Servico;
 
 
 import java.sql.Connection;
@@ -42,8 +45,9 @@ public class FuncionarioServicoDao implements Dao<FuncionarioServico> {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         FuncionarioServico funcionarioServico = new FuncionarioServico();
-                        funcionarioServico.setIdFunc(resultSet.getLong("id_func"));
-                        funcionarioServico.setIdServ(resultSet.getLong("id_serv"));
+                        Funcionario funcionario = FuncionarioDao.findById(resultSet.getLong("id_func"));
+                        Servico servico = ServicoDao.findById(resultSet.getLong("id_serv"));
+                        Pet pet = PetDao.findById((resultSet.getLong("id_pet"));
                         funcionarioServico.setDataAgendamento(resultSet.getTimestamp("data_agendamento").toLocalDateTime());
                         funcServ.add(funcionarioServico);
                     }
@@ -58,7 +62,7 @@ public class FuncionarioServicoDao implements Dao<FuncionarioServico> {
 
         @Override
         public FuncionarioServico findById(Long id) {
-            String sql = "SELECT * FROM funcionarioServico WHERE id = ?";
+            String sql = "SELECT * FROM funcionarioServico WHERE id_func = ? AND id_serv = ?";
             List<FuncionarioServico> FuncServ = executeQuery(sql, id);
             return FuncServ.isEmpty() ? null : FuncServ.get(0);
         }
@@ -72,18 +76,18 @@ public class FuncionarioServicoDao implements Dao<FuncionarioServico> {
         @Override
         public boolean save(FuncionarioServico funcionarioServico) {
             String sql = "INSERT INTO funcionarioServico (id_func, id_serv, data_agendamento) VALUES (?, ?, ?)";
-            return executeUpdate(sql, funcionarioServico.getIdFunc(), funcionarioServico.getIdServ(), funcionarioServico.getDataAgendamento());
+            return executeUpdate(sql, funcionarioServico.getFuncionario(), funcionarioServico.getServico(), funcionarioServico.getDataAgendamento());
         }
 
         @Override
         public boolean update(FuncionarioServico funcionarioServico) {
-            String sql = "UPDATE funcionarioServico SET id_func = ?, id_serv = ?, data_agendamento = ? WHERE id = ?";
-            return executeUpdate(sql, funcionarioServico.getIdFunc(), funcionarioServico.getIdServ(), funcionarioServico.getDataAgendamento());
+            String sql = "UPDATE funcionarioServico SET id_func = ?, id_serv = ?, data_agendamento = ? WHERE id_func = ? AND id_serv = ?";
+            return executeUpdate(sql, funcionarioServico.getFuncionario(), funcionarioServico.getServico(), funcionarioServico.getDataAgendamento());
         }
 
         @Override
         public boolean delete(Long id) {
-            String sql = "DELETE FROM funcionarioServico WHERE id = ?";
+            String sql = "DELETE FROM funcionarioServico WHERE id_func = ? AND id_serv = ?";
             return executeUpdate(sql, id);
         }
 }

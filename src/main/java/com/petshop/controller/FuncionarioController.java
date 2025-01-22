@@ -48,17 +48,7 @@ public class FuncionarioController {
 
         @FXML
         void Buscar(ActionEvent event) {
-                String nome = Nome.getText();
-                List<Funcionario> funcionario = FuncionarioService.findByName(nome);
-                ObservableList<Produto> observableProdutos = FXCollections.observableArrayList(produtos);
 
-                if (!produtos.isEmpty()) {
-                    tableView.setItems(observableProdutos);
-                } else {
-                    showError("Nenhum produto encontrado com o nome informado.");
-                }
-            }
-        }
 
         @FXML
         void Excluir(ActionEvent event) {
